@@ -14,7 +14,7 @@
 
 - Adding Details Demo
 
-![addingdetails](https://github.com/Dudam-Neeraj-Dattu/userform-for-diagnostics-centre/blob/master/Screenshots/Add%20details.mp4)
+![addingdetails](https://user-images.githubusercontent.com/86230018/227479077-a0e7337b-552d-4ed3-a598-04e5c564e989.mp4)
 
 - Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
