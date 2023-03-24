@@ -18,7 +18,7 @@
 
 - Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
-![newrecord](/Screenshots/New%20Record.gif)
+![newrecord](/Screenshots/)
 
 - Resetting the data entered in the form Demo
 
