@@ -14,11 +14,11 @@
 
 - Adding Details Demo
 
-![adddetails](https://user-images.githubusercontent.com/86230018/227479077-a0e7337b-552d-4ed3-a598-04e5c564e989.mp4)
+![adddetails](/Screenshots/Add%20details.gif)
 
 - Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
-![newrecord](/Screenshots/New%20Record.mp4)
+![newrecord](/Screenshots/New%20Record.gif)
 
 - Resetting the data entered in the form Demo
 
