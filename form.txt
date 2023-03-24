@@ -1,0 +1,56 @@
+Private Sub add_details_Click()
+    Dim msgvalue As VbMsgBoxResult
+    
+    msgvalue = MsgBox("Do you want to add the details?", vbYesNo + vbInformation, "Confirmation")
+    
+    If msgvalue = vbNo Then Exit Sub
+    
+    Call save
+    
+End Sub
+
+Private Sub genrateIDbutton_Click()
+
+    txtdate.Value = Format(Date, "d-mmm-yyyy")
+    txttime.Value = Time
+    txtref.Value = Format(Date, "dmmyyyy") + Format(Time, "hhmmss")
+    
+End Sub
+
+Private Sub new_record_Click()
+    
+    Call initiate
+
+End Sub
+
+Private Sub reset_click()
+
+    Dim msgvalue As VbMsgBoxResult
+    
+    msgvalue = MsgBox("Do you want to reset the details?", vbYesNo + vbInformation, "Confirmation")
+    
+    If msgvalue = vbNo Then Exit Sub
+     
+    Call initiate
+
+End Sub
+
+
+Private Sub testname_Change()
+
+   If testname.Value = "Blood Test" Then price.Value = 150
+   If testname.Value = "RTPCR Test" Then price.Value = 200
+   If testname.Value = "Sugar Test" Then price.Value = 200
+   If testname.Value = "TSH Test" Then price.Value = 150
+   If testname.Value = "T3 T4 TSH Test" Then price.Value = 400
+   If testname.Value = "Ultrasound Scanning" Then price.Value = 1000
+   If testname.Value = "X-Ray" Then price.Value = 500
+
+End Sub
+
+Private Sub UserForm_Initialize()
+
+    Call initiate
+    
+    
+End Sub
