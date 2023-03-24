@@ -4,26 +4,26 @@
 
 - It generates date and time for every new entry automatically and also it generates Reference ID for every patient data dynamically by  using the date and time of entry.
 
-- The Empty form looks like this
+- The Empty form looks like this.
 
 ![emptyform](/Screenshots/Empty%20Form.jpeg)
 
-- This is the initial excel file
+- This is the initial excel file.
 
 ![initialfile](/Screenshots/initial%20form.jpeg)
 
-- Adding Details Demo
+- <a href="https://user-images.githubusercontent.com/86230018/227480339-23eae173-df73-4e8e-8c6b-511051232dde.mp4" text-decoration = none>Adding Details</a> Demo.
 
 ![adddetails](/Screenshots/Add%20details.gif)
 
-- Adding <a href="https://user-images.githubusercontent.com/86230018/227480339-23eae173-df73-4e8e-8c6b-511051232dde.mp4" text-decoration = none>New Record</a> Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
+- Adding <a href="https://user-images.githubusercontent.com/86230018/227484260-bb68fb3d-cad8-4b20-aa9b-8497cd9b6526.mp4" text-decoration = none>New Record</a> Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
 ![newrecord](/Screenshots/New%20Record.gif)
 
-- Resetting the data entered in the form Demo
+- Demo of <a href="https://user-images.githubusercontent.com/86230018/227484337-f636ff30-1301-474e-b6ee-058af9092291.mp4" text-decoration = none>Resetting</a> the data entered in the form.
 
 ![reset](/Screenshots/Reset.gif)
 
-- This is the final form after entering the details
+- This is the final form after entering the details.
 
 ![finalform](/Screenshots/final%20form.jpeg)
