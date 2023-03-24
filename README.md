@@ -16,9 +16,9 @@
 
 ![adddetails](/Screenshots/Add%20details.gif)
 
-- Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
+- Adding <a href="https://user-images.githubusercontent.com/86230018/227480339-23eae173-df73-4e8e-8c6b-511051232dde.mp4" text-decoration = none>New Record</a> Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
-![newrecord](/Screenshots/)
+![newrecord](/Screenshots/New%20Record.gif)
 
 - Resetting the data entered in the form Demo
 
