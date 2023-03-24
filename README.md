@@ -14,7 +14,7 @@
 
 - Adding Details Demo
 
-![addingdetails](/Screenshots/Add%20details.gif)
+![addingdetails](https://github.com/Dudam-Neeraj-Dattu/userform-for-diagnostics-centre/blob/master/Screenshots/Add%20details.mp4)
 
 - Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
@@ -22,7 +22,7 @@
 
 - Resetting the data entered in the form Demo
 
-![reset](/Screenshots/Reset.mp4)
+![reset](/Screenshots/Reset.gif)
 
 - This is the final form after entering the details
 
