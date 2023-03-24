@@ -1,0 +1,72 @@
+Sub initiate()
+    
+    Dim irow As Long
+    irow = [counta(Database!A:A)]
+    With patientform
+        
+        .txtdate.Value = Format(Date, "dd-mmm-yyyy")
+        .txttime.Value = Time
+        .txtref.Value = Format(Date, "yyyymmdd") + Format(Time, "hhmmss")
+        
+        .testname.Clear
+        
+        .testname.AddItem "Blood Test"
+        .testname.AddItem "RTPCR Test"
+        .testname.AddItem "Sugar Test"
+        .testname.AddItem "TSH Test"
+        .testname.AddItem "T3 T4 TSH Test"
+        .testname.AddItem "Ultrasound Scanning"
+        .testname.AddItem "X-Ray"
+        
+        .patientname.Value = ""
+        .Age.Value = ""
+        .MaleOption.Value = False
+        .FemaleOption.Value = False
+        .Number.Value = ""
+        .DocName.Value = ""
+        .price.Value = ""
+        
+                    
+    End With
+    
+
+End Sub
+
+
+Sub save()
+
+    Dim sh As Worksheet
+    Dim irow As Long
+    
+    Set sh = ThisWorkbook.Sheets("Database")
+    irow = [counta(Database!A:A)] + 6
+    
+    With sh
+        
+        .Cells(irow, 1) = irow - 6
+        .Cells(irow, 2) = patientform.txtref.Value
+        .Cells(irow, 3) = patientform.txtdate.Value
+        .Cells(irow, 4) = patientform.txttime.Value
+        .Cells(irow, 5) = patientform.patientname.Value
+        .Cells(irow, 6) = patientform.Age.Value
+        .Cells(irow, 7) = IIf(patientform.FemaleOption.Value = True, "Female", "Male")
+        .Cells(irow, 8) = patientform.Number.Value
+        .Cells(irow, 9) = patientform.DocName.Value
+        .Cells(irow, 10) = patientform.testname.Value
+        .Cells(irow, 11) = patientform.price.Value
+        
+        Let rownum = "A" & irow & ":" & "K" & irow
+        Range(Cells(irow, 1), Cells(irow, 11)).Borders.LineStyle = xlSolid
+        
+    End With
+        
+    Workbooks("Neeraj Dattu Diagnostic Centre.xlsm").save
+    
+        
+End Sub
+
+Sub show_form()
+
+    patientform.Show
+    
+End Sub
