@@ -14,7 +14,7 @@
 
 - Adding Details Demo
 
-![addingdetails](/Screenshots/Add%20details.mp4)
+![addingdetails](/Screenshots/Add%20details.gif)
 
 - Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
