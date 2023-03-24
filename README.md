@@ -6,24 +6,24 @@
 
 - The Empty form looks like this
 
-[!emptyform](/Screenshots/Empty%20Form.jpeg)
+![emptyform](/Screenshots/Empty%20Form.jpeg)
 
 - This is the initial excel file
 
-[!initialfile](/Screenshots/initial%20form.jpeg)
+![initialfile](/Screenshots/initial%20form.jpeg)
 
 - Adding Details Demo
 
-[!addingdetails](/Screenshots/Add%20details.mp4)
+![addingdetails](/Screenshots/Add%20details.mp4)
 
 - Adding New Record Demo. The data, time and reference ID are automatically generated when New Record button is pressed.
 
-[!newrecord](/Screenshots/New%20Record.mp4)
+![newrecord](/Screenshots/New%20Record.mp4)
 
 - Resetting the data entered in the form Demo
 
-[!reset](/Screenshots/Reset.mp4)
+![reset](/Screenshots/Reset.mp4)
 
 - This is the final form after entering the details
 
-[!finalform](/Screenshots/final%20form.jpeg)
+![finalform](/Screenshots/final%20form.jpeg)
