@@ -24,13 +24,14 @@
 
 ![reset](/Screenshots/Reset.gif)
 
-- This is the final form after entering the details.
+- This is the final data after entering the details.
 
 ![finalform](/Screenshots/final%20form.jpeg)
 
-- Demo of <a href="https://user-images.githubusercontent.com/86230018/227484337-f636ff30-1301-474e-b6ee-058af9092291.mp4" text-decoration = none>Report </a>making with the number of tests performed for each health test type based on the data entered until that date.
+- Demo of <a href="https://user-images.githubusercontent.com/86230018/231160677-e69e1446-3ef1-463f-8619-dd236306da1a.mp4" text-decoration = none>Report </a>making with the number of tests performed for each health test type based on the data entered until that date.
+
 ![reset](/Screenshots/Report%20making.gif)
 
-- This is the final form after entering the details.
+- This is the final report that we got after pressing make report button.
 
 ![finalform](/Screenshots/final%20report.jpg)
