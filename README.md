@@ -27,3 +27,10 @@
 - This is the final form after entering the details.
 
 ![finalform](/Screenshots/final%20form.jpeg)
+
+- Demo of <a href="https://user-images.githubusercontent.com/86230018/227484337-f636ff30-1301-474e-b6ee-058af9092291.mp4" text-decoration = none>Report </a>making with the number of tests performed for each health test type based on the data entered until that date.
+![reset](/Screenshots/Report%20making.gif)
+
+- This is the final form after entering the details.
+
+![finalform](/Screenshots/final%20report.jpg)

@@ -1,0 +1,262 @@
+Option Explicit
+
+Dim lastRowinUniqueSheet As Long
+
+
+' To sort the Values after taking unique values
+
+Sub QuickSort(ByRef arr As Variant, ByVal left As Long, ByVal right As Long)
+    Dim i As Long
+    Dim j As Long
+    Dim pivot As Variant
+    Dim temp As Variant
+    
+    i = left
+    j = right
+    
+    pivot = arr((left + right) \ 2)
+    
+    While i <= j
+        While arr(i) < pivot And i < right
+            i = i + 1
+        Wend
+        
+        While pivot < arr(j) And j > left
+            j = j - 1
+        Wend
+        
+        If i <= j Then
+            temp = arr(i)
+            arr(i) = arr(j)
+            arr(j) = temp
+            
+            i = i + 1
+            j = j - 1
+        End If
+        
+        If left < j Then Call QuickSort(arr, left, j)
+        If i < right Then Call QuickSort(arr, i, right)
+        
+    Wend
+    
+End Sub
+
+'To modify the format of the important cells in the Report
+
+Function modify_cell(cell As Range) As Variant
+
+    With cell
+
+        .Font.Color = vbRed
+        .Font.Size = 14
+        .Font.Bold = True
+        .Interior.Color = vbYellow
+        .EntireColumn.AutoFit
+        .Borders.LineStyle = xlSolid
+        
+    End With
+    
+End Function
+
+
+'To get unique values from database and count frequency and record it in new sheet
+
+Sub GetUniqueValues()
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+    
+    Dim lastRow As Long
+    lastRow = Cells(Rows.Count, "J").End(xlUp).Row
+    
+    Dim i As Long
+    For i = 7 To lastRow
+        If Not dict.Exists(Cells(i, "J").Value) Then
+            dict.Add Cells(i, "J").Value, 1
+        Else
+            dict(Cells(i, "J").Value) = dict(Cells(i, "J").Value) + 1
+        End If
+    Next i
+    
+    
+    Dim sortedKeys() As Variant
+    sortedKeys = dict.keys
+    
+    Call QuickSort(sortedKeys, LBound(sortedKeys), UBound(sortedKeys))
+    
+    'Dim "Report" As String
+    
+    '"Report" = "Report" & Format(Date, "ddmm") & Format(Time, "hms")
+    
+    
+    
+    Dim key As Variant
+    
+    Dim newSheet As Worksheet
+    
+    Set newSheet = ThisWorkbook.Sheets.Add(After:=ThisWorkbook.Sheets(ThisWorkbook.Sheets.Count))
+    
+    newSheet.Name = "Report"
+    
+    ActiveWindow.DisplayGridlines = False
+       
+    
+    Sheets("Report").Cells(1, 1).Value = "Test Name"
+    Sheets("Report").Cells(1, 2).Value = "No.of Tests"
+    
+    Call modify_cell(Sheets("Report").Range("A1"))
+    Call modify_cell(Sheets("Report").Range("B1"))
+    
+    lastRowinUniqueSheet = Sheets("Report").Cells(Rows.Count, "J").End(xlUp).Row + 1
+    
+    Dim no_of_tests As Integer
+    
+    no_of_tests = 0
+    
+    For Each key In sortedKeys
+    
+        With Sheets("Report")
+            
+            .Range("A" & lastRowinUniqueSheet).Value = key
+            .Range("A" & lastRowinUniqueSheet).EntireColumn.AutoFit
+            .Range("B" & lastRowinUniqueSheet).Value = dict(key)
+            .Range(Cells(lastRowinUniqueSheet, 1), Cells(lastRowinUniqueSheet, 2)).Borders.LineStyle = xlSolid
+            no_of_tests = no_of_tests + dict(key)
+            lastRowinUniqueSheet = lastRowinUniqueSheet + 1
+        
+        End With
+
+    Next key
+    
+    Cells(lastRowinUniqueSheet, 1).Value = "Total Tests"
+    Cells(lastRowinUniqueSheet, 2).Value = no_of_tests
+    Call modify_cell(Sheets("Report").Range("A" & lastRowinUniqueSheet))
+    Call modify_cell(Sheets("Report").Range("B" & lastRowinUniqueSheet))
+    
+    
+End Sub
+
+'Makes the chart from the unique recorded values and their frequencies
+
+Sub draw_chart()
+
+    Call GetUniqueValues 'initialise sheet with unique values
+    
+    Dim my_chart As ChartObject
+    
+    Set my_chart = ActiveSheet.ChartObjects.Add(Top:=50, left:=300, Width:=500, Height:=250)
+    
+    my_chart.Chart.SetSourceData Source:=Sheets("Report").Range("A2:B" & lastRowinUniqueSheet - 1) 'makes chart from the values
+    
+    my_chart.Chart.ChartType = xlBarClustered 'changes the chart type
+    
+    Call titles_to_axes
+    
+    
+
+End Sub
+Sub titles_to_axes()
+'
+' titles_to_axes Macro
+'
+
+'
+    ActiveSheet.ChartObjects("Chart 1").Activate
+    ActiveChart.ApplyLayout (8)
+    ActiveSheet.ChartObjects("Chart 1").Activate
+    ActiveChart.Axes(xlValue).AxisTitle.Select
+    ActiveChart.Axes(xlValue, xlPrimary).AxisTitle.Text = "No.of Tests"
+    Selection.Format.TextFrame2.TextRange.Characters.Text = "No.of Tests"
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 11).ParagraphFormat
+        .TextDirection = msoTextDirectionLeftToRight
+        .Alignment = msoAlignCenter
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 11).Font
+        .BaselineOffset = 0
+        .Bold = msoTrue
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 10
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    ActiveChart.Axes(xlCategory).AxisTitle.Select
+    Application.CommandBars("Format Object").Visible = False
+    ActiveChart.Axes(xlCategory, xlPrimary).AxisTitle.Text = "Test Name"
+    Selection.Format.TextFrame2.TextRange.Characters.Text = "Test Name"
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 9).ParagraphFormat
+        .TextDirection = msoTextDirectionLeftToRight
+        .Alignment = msoAlignCenter
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 9).Font
+        .BaselineOffset = 0
+        .Bold = msoTrue
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 10
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    ActiveChart.Legend.Select
+    Selection.Delete
+    ActiveChart.SetElement (msoElementChartTitleAboveChart)
+    ActiveChart.ChartTitle.Text = "Tests Report"
+    Selection.Format.TextFrame2.TextRange.Characters.Text = "Tests Report"
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 12).ParagraphFormat
+        .TextDirection = msoTextDirectionLeftToRight
+        .Alignment = msoAlignCenter
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 12).Font
+        .BaselineOffset = 0
+        .Bold = msoTrue
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 18
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    ActiveChart.ChartTitle.Text = "Number of Tests Report"
+    Selection.Format.TextFrame2.TextRange.Characters.Text = _
+        "Number of Tests Report"
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 22).ParagraphFormat
+        .TextDirection = msoTextDirectionLeftToRight
+        .Alignment = msoAlignCenter
+    End With
+    With Selection.Format.TextFrame2.TextRange.Characters(1, 22).Font
+        .BaselineOffset = 0
+        .Bold = msoTrue
+        .NameComplexScript = "+mn-cs"
+        .NameFarEast = "+mn-ea"
+        .Fill.Visible = msoTrue
+        .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        .Fill.Transparency = 0
+        .Fill.Solid
+        .Size = 18
+        .Italic = msoFalse
+        .Kerning = 12
+        .Name = "+mn-lt"
+        .UnderlineStyle = msoNoUnderline
+        .Strike = msoNoStrike
+    End With
+    Range("J25").Select
+End Sub
